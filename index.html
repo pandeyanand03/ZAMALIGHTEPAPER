@@ -12,32 +12,33 @@
     }
     .container {
       width: 500px;
+      background: linear-gradient(135deg, #000000, #008080); /* black to teal */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      text-align: center;
     }
     .quiz-step {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       display: none;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
     .quiz-step.active { display: block; transform: scale(1.02); opacity: 1; }
-    h2 { color: #333; }
-    input { margin-top: 5px; }
+    h2 { color: white; margin-bottom: 20px; }
+    input { margin: 8px 0; }
+    label { color: white; display: block; margin: 5px 0; cursor: pointer; }
     button {
       padding: 12px 20px;
       border: none;
-      background: #007bff;
+      background: #00CED1;
       color: white;
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
+      margin-top: 20px;
       transition: background 0.3s ease;
-      margin-top: 15px;
     }
-    button:hover { background: #0056b3; }
-    .result { font-weight: bold; font-size: 18px; margin-top: 15px; text-align: center; }
+    button:hover { background: #20B2AA; }
+    .result { font-weight: bold; font-size: 20px; margin-top: 20px; color: white; }
   </style>
 </head>
 <body>
@@ -45,37 +46,37 @@
 <div class="container">
   <div class="quiz-step active" id="q1">
     <h2>1. What is the main purpose of the Zama Protocol?</h2>
-    <input type="radio" name="q1" value="a"> Create a new blockchain<br>
-    <input type="radio" name="q1" value="b"> Enable confidential smart contracts on any chain<br>
-    <input type="radio" name="q1" value="c"> Provide a new cryptocurrency exchange<br>
-    <input type="radio" name="q1" value="d"> Replace Ethereum entirely<br>
+    <label><input type="radio" name="q1" value="a"> Create a new blockchain</label>
+    <label><input type="radio" name="q1" value="b"> Enable confidential smart contracts on any chain</label>
+    <label><input type="radio" name="q1" value="c"> Provide a new cryptocurrency exchange</label>
+    <label><input type="radio" name="q1" value="d"> Replace Ethereum entirely</label>
     <button onclick="nextStep(1)">Next</button>
   </div>
 
   <div class="quiz-step" id="q2">
     <h2>2. Which core technology does Zama use for encrypted computation?</h2>
-    <input type="radio" name="q2" value="a"> Zero-Knowledge Proofs (ZK)<br>
-    <input type="radio" name="q2" value="b"> Multi-Party Computation (MPC)<br>
-    <input type="radio" name="q2" value="c"> Fully Homomorphic Encryption (FHE)<br>
-    <input type="radio" name="q2" value="d"> Trusted Execution Environments (TEE)<br>
+    <label><input type="radio" name="q2" value="a"> Zero-Knowledge Proofs (ZK)</label>
+    <label><input type="radio" name="q2" value="b"> Multi-Party Computation (MPC)</label>
+    <label><input type="radio" name="q2" value="c"> Fully Homomorphic Encryption (FHE)</label>
+    <label><input type="radio" name="q2" value="d"> Trusted Execution Environments (TEE)</label>
     <button onclick="nextStep(2)">Next</button>
   </div>
 
   <div class="quiz-step" id="q3">
     <h2>3. Which use case is supported by Zama Protocol?</h2>
-    <input type="radio" name="q3" value="a"> Confidential DeFi<br>
-    <input type="radio" name="q3" value="b"> Social media analytics<br>
-    <input type="radio" name="q3" value="c"> Weather prediction<br>
-    <input type="radio" name="q3" value="d"> File storage only<br>
+    <label><input type="radio" name="q3" value="a"> Confidential DeFi</label>
+    <label><input type="radio" name="q3" value="b"> Social media analytics</label>
+    <label><input type="radio" name="q3" value="c"> Weather prediction</label>
+    <label><input type="radio" name="q3" value="d"> File storage only</label>
     <button onclick="nextStep(3)">Next</button>
   </div>
 
   <div class="quiz-step" id="q4">
     <h2>4. When is the Zama Ethereum mainnet planned?</h2>
-    <input type="radio" name="q4" value="a"> Already live<br>
-    <input type="radio" name="q4" value="b"> Q4 2025<br>
-    <input type="radio" name="q4" value="c"> 2026<br>
-    <input type="radio" name="q4" value="d"> 2024<br>
+    <label><input type="radio" name="q4" value="a"> Already live</label>
+    <label><input type="radio" name="q4" value="b"> Q4 2025</label>
+    <label><input type="radio" name="q4" value="c"> 2026</label>
+    <label><input type="radio" name="q4" value="d"> 2024</label>
     <button onclick="submitQuiz()">Submit</button>
   </div>
 
@@ -86,8 +87,7 @@
 const answers = { q1:'b', q2:'c', q3:'a', q4:'b' };
 
 function nextStep(current) {
-  const stepDiv = document.getElementById('q'+current);
-  stepDiv.classList.remove('active');
+  document.getElementById('q'+current).classList.remove('active');
   const nextDiv = document.getElementById('q'+(current+1));
   if(nextDiv) nextDiv.classList.add('active');
 }
@@ -107,4 +107,3 @@ function submitQuiz() {
 
 </body>
 </html>
-
